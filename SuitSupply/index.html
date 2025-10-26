@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Skeleton Template | SuitSupply</title>
+  </head>
+  <body>
+    <main class="container">
+      <div class="container__left">
+        <div class="ribbon__white">
+          <h1><span>Suit</span>Supply<span>.</span></h1>
+        </div>
+        <div class="ribbon__red"></div>
+        <img src="assets/pic-1.jpg" alt="profile" />
+      </div>
+      <div class="container__right">
+        <div class="navbar">
+          <span>Home</span>
+          <span>Portfolio</span>
+          <span>Services</span>
+          <span>Contact</span>
+          <span class="join">Join</span>
+        </div>
+        <div class="content">
+          <h1>Tailored<br /><span>For</span><br />You<span>.</span></h1>
+          <p>
+            Discover timeless elegance with our meticulously crafted suits. Each
+            garment is a testament to sartorial excellence, cut from the finest
+            fabrics and tailored to perfection. Experience the distinguished
+            silhouette and unparalleled comfort that define true sophistication.
+            Elevate your presence, command attention, and embrace the power of a
+            perfectly fitted suit.
+          </p>
+        </div>
+        <div class="carousal">
+          <div class="slide active">
+            <div class="slide__image"></div>
+          </div>
+          <div class="slide">
+            <div class="slide__image"></div>
+          </div>
+          <div class="slide">
+            <div class="slide__image"></div>
+          </div>
+          <div class="play" id="playButton">
+            <i class="ri-arrow-right-s-line"></i>
+          </div>
+        </div>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const playButton = document.getElementById('playButton');
+            let currentSlide = 0;
+            let isPlaying = false;
+            let slideInterval;
+
+            function nextSlide() {
+              slides[currentSlide].classList.remove('active');
+              currentSlide = (currentSlide + 1) % slides.length;
+              slides[currentSlide].classList.add('active');
+            }
+
+            function togglePlay() {
+              if (isPlaying) {
+                clearInterval(slideInterval);
+                playButton.innerHTML = '<i class="ri-arrow-right-s-line"></i>';
+              } else {
+                slideInterval = setInterval(nextSlide, 3000);
+                playButton.innerHTML = '<i class="ri-pause-line"></i>';
+              }
+              isPlaying = !isPlaying;
+            }
+
+            slides.forEach((slide, index) => {
+              slide.addEventListener('click', () => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = index;
+                slide.classList.add('active');
+              });
+            });
+
+            playButton.addEventListener('click', togglePlay);
+          });
+        </script>
+      </div>
+    </main>
+  </body>
+</html>
